@@ -38,7 +38,7 @@ def articles():
             return render_template('articles.html', articles=articles)
         else:
             msg = 'No Articles Found'
-            return render_template('articles.html',msg=msg)
+            return render_template('articles.html', msg=msg)
         cur.close()
 
 # Get one article
@@ -141,7 +141,7 @@ def is_logged_in(f):
 # Logout
 @app.route('/logout')
 @is_logged_in
-def lougout():
+def logout():
     session.clear()
     flash('You are logged out', 'success')
     return redirect(url_for('login'))
@@ -198,7 +198,7 @@ def add_article():
 
     return render_template('add_article.html', form=form)
 
-# Edit Artcile
+# Edit Article
 @app.route('/edit_article/<string:id>', methods=['GET', 'POST'])
 @is_logged_in
 def edit_article(id):
@@ -253,15 +253,6 @@ def delete_article(id):
     flash('Article Deleted', 'success')
 
     return redirect(url_for('dashboard'))
-
-
-
-
-
-
-
-
-
 
 if __name__ == '__main__':
     app.secret_key='secret123'
